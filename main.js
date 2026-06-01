@@ -373,6 +373,12 @@ function setupScrollReveal() {
   const elements = document.querySelectorAll('.reveal-on-scroll');
   const timelineItems = document.querySelectorAll('.timeline-item');
   
+  if (typeof IntersectionObserver === 'undefined') {
+    elements.forEach(el => el.classList.add('active'));
+    timelineItems.forEach(el => el.classList.add('active'));
+    return;
+  }
+
   const observerOptions = {
     root: null,
     threshold: 0.15,
@@ -531,7 +537,12 @@ function setupCatPlayground() {
   if (!container || !counterSpan) return;
 
   // Retrieve counter from localStorage or default to 0
-  let hugCount = parseInt(localStorage.getItem('inna_virtual_hugs') || '0', 10);
+  let hugCount = 0;
+  try {
+    hugCount = parseInt(localStorage.getItem('inna_virtual_hugs') || '0', 10);
+  } catch (e) {
+    console.warn("localStorage read blocked or unavailable:", e);
+  }
   counterSpan.textContent = hugCount;
 
   const meowMessages = [
@@ -558,7 +569,11 @@ function setupCatPlayground() {
     
     // 3. Increment counter with localstorage save
     hugCount++;
-    localStorage.setItem('inna_virtual_hugs', hugCount);
+    try {
+      localStorage.setItem('inna_virtual_hugs', hugCount);
+    } catch (e) {
+      console.warn("localStorage write blocked or unavailable:", e);
+    }
     counterSpan.textContent = hugCount;
     counterSpan.style.animation = 'none';
     // Trigger reflow
