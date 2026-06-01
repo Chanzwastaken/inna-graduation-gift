@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Wisuda, Inna Amelia! 🎓🌸🐱</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Hadiah ucapan selamat wisuda spesial, estetik, dan interaktif untuk Inna Amelia. Congratulations on your graduation!">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Style Link -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- Background Music Element -->
+  <audio id="bg-music" src="./assets/song.mp3" loop></audio>
+
+  <!-- Background Music Toggle -->
+  <button id="music-toggle" class="music-btn" aria-label="Toggle Music" title="Putar Musik Lofi Lucu">
+    <svg class="music-icon play" viewBox="0 0 24 24" width="24" height="24">
+      <path fill="currentColor"
+        d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+    </svg>
+    <svg class="music-icon mute hidden" viewBox="0 0 24 24" width="24" height="24">
+      <path fill="currentColor"
+        d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.18l5.46 5.46 1.27-1.27L4.27 3zM12 7h4V3h-6v3.18l2 2V7z" />
+    </svg>
+  </button>
+
+  <!-- Mouse Sparkle Canvas -->
+  <canvas id="sparkle-canvas"></canvas>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-overlay">
+    <div class="loading-content">
+      <div class="loading-cat">
+        <!-- SVG cute cat blinking -->
+        <svg class="cat-svg" viewBox="0 0 100 100" width="100" height="100">
+          <circle cx="50" cy="55" r="35" fill="#FFE4EC" stroke="#FF85A2" stroke-width="3" />
+          <!-- Ears -->
+          <polygon points="20,30 35,10 42,32" fill="#FFE4EC" stroke="#FF85A2" stroke-width="3"
+            stroke-linejoin="round" />
+          <polygon points="25,28 34,14 39,29" fill="#FFC0CB" />
+          <polygon points="80,30 65,10 58,32" fill="#FFE4EC" stroke="#FF85A2" stroke-width="3"
+            stroke-linejoin="round" />
+          <polygon points="75,28 66,14 61,29" fill="#FFC0CB" />
+          <!-- Eyes with blinking animation -->
+          <g class="cat-eyes">
+            <ellipse cx="38" cy="50" rx="4" ry="4" fill="#5c3a44" />
+            <ellipse cx="62" cy="50" rx="4" ry="4" fill="#5c3a44" />
+            <circle cx="36" cy="48" r="1.5" fill="#ffffff" />
+            <circle cx="60" cy="48" r="1.5" fill="#ffffff" />
+          </g>
+          <!-- Nose and Mouth -->
+          <path d="M47,56 Q50,59 53,56" fill="none" stroke="#FF85A2" stroke-width="2" stroke-linecap="round" />
+          <path d="M50,55 L50,57" fill="none" stroke="#FF85A2" stroke-width="2" />
+          <path d="M45,58 Q47.5,60 50,58 Q52.5,60 55,58" fill="none" stroke="#FF85A2" stroke-width="2"
+            stroke-linecap="round" />
+          <!-- Cheeks -->
+          <circle cx="32" cy="56" r="3" fill="#FF85A2" opacity="0.6" />
+          <circle cx="68" cy="56" r="3" fill="#FF85A2" opacity="0.6" />
+          <!-- Whiskers -->
+          <line x1="15" y1="53" x2="27" y2="55" stroke="#FF85A2" stroke-width="2" stroke-linecap="round" />
+          <line x1="13" y1="59" x2="26" y2="59" stroke="#FF85A2" stroke-width="2" stroke-linecap="round" />
+          <line x1="85" y1="53" x2="73" y2="55" stroke="#FF85A2" stroke-width="2" stroke-linecap="round" />
+          <line x1="87" y1="59" x2="74" y2="59" stroke="#FF85A2" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="paw-tracks">
+        <span class="paw">🐾</span>
+        <span class="paw">🐾</span>
+        <span class="paw">🐾</span>
+      </div>
+      <p class="loading-text">Menyiapkan kejutan spesial untuk Inna Amelia...</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <header id="hero-section" class="hero-container">
+    <div class="floating-bg">
+      <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+      <div class="floating-heart" style="left: 30%; animation-delay: 2s;">🌸</div>
+      <div class="floating-heart" style="left: 55%; animation-delay: 1s;">✨</div>
+      <div class="floating-heart" style="left: 75%; animation-delay: 3s;">🐱</div>
+      <div class="floating-heart" style="left: 90%; animation-delay: 1.5s;">🎈</div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-illustration">
+        <!-- Image of toga cat will go here -->
+        <img id="hero-cat-img" src="./assets/toga_cat.png" alt="Graduation Cute Cat" class="toga-cat-img">
+      </div>
+      <h1 class="hero-title font-pacifico">🎓 Selamat Wisuda, Inna Amelia!</h1>
+      <p class="hero-subtitle">"Hari ini adalah bukti bahwa semua perjuanganmu selama ini tidak sia-sia."</p>
+      <p class="hero-small-text">Untuk seseorang yang telah berjuang, bertumbuh, dan berhasil sampai di titik ini.</p>
+      <button id="open-special-btn" class="cute-btn btn-pulse">
+        💌 Buka Pesan Spesial
+      </button>
+    </div>
+
+    <div class="scroll-down-indicator">
+      <span class="arrow-down">↓</span>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Ucapan Utama Section -->
+    <section id="greeting-section" class="section-container reveal-on-scroll">
+      <div class="sakura-container" id="sakura-container"></div>
+      <div class="glass-card card-pink text-center greeting-card">
+        <div class="sticker-cat">🌸🐱🌸</div>
+        <h2 class="section-title font-pacifico">🌸 Untuk Inna Amelia</h2>
+        <div class="greeting-body">
+          <p>Inna,</p>
+          <p>Selamat atas kelulusanmu.</p>
+          <p>Hari ini bukan hanya tentang sebuah ijazah atau acara perpisahan.</p>
+          <p>Hari ini adalah tentang semua usaha yang telah kamu lakukan, semua hari-hari yang berhasil kamu lewati, dan
+            semua mimpi yang terus kamu perjuangkan.</p>
+          <p>Teria kasih karena sudah bertahan sampai sejauh ini.</p>
+          <p>Kamu sudah melakukan pekerjaan yang luar biasa.</p>
+          <p>Dan untuk itu, kamu pantas merasa bangga pada dirimu sendiri.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Perjalanan Section -->
+    <section id="timeline-section" class="section-container reveal-on-scroll">
+      <h2 class="section-title font-quicksand text-center">🐾 Perjalanan Indahmu di SMA</h2>
+      <div class="timeline-vertical">
+
+        <div class="timeline-item left">
+          <div class="timeline-badge">1️⃣</div>
+          <div class="timeline-content glass-card">
+            <h3>Awal SMA</h3>
+            <p>"Langkah pertama menuju perjalanan yang penuh cerita."</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right">
+          <div class="timeline-badge">2️⃣</div>
+          <div class="timeline-content glass-card">
+            <h3>Masa Belajar</h3>
+            <p>"Belajar, berkembang, dan menghadapi berbagai tantangan."</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left">
+          <div class="timeline-badge">3️⃣</div>
+          <div class="timeline-content glass-card">
+            <h3>Momen Bahagia</h3>
+            <p>"Persahabatan, tawa, dan kenangan yang akan selalu dikenang."</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right">
+          <div class="timeline-badge">4️⃣</div>
+          <div class="timeline-content glass-card">
+            <h3>Kelulusan</h3>
+            <p>"Semua perjuangan akhirnya membuahkan hasil."</p>
+          </div>
+        </div>
+
+        <div class="timeline-item left">
+          <div class="timeline-badge">5️⃣</div>
+          <div class="timeline-content glass-card">
+            <h3>Masa Depan</h3>
+            <p>"Petualangan baru siap menunggu."</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Polaroid Photo Album Section -->
+    <section id="album-section" class="section-container reveal-on-scroll">
+      <div class="text-center">
+        <h2 class="section-title font-quicksand">✨ Album Foto Inna Amelia ✨</h2>
+        <p class="section-desc">"Lembaran kenangan manis yang diabadikan dalam bingkai indah."</p>
+      </div>
+      <div class="polaroid-album">
+        <div class="polaroid-card rotate-left">
+          <div class="polaroid-img-wrapper">
+            <img src="./assets/1.jpeg" alt="Foto Album 1" class="polaroid-img">
+          </div>
+          <p class="polaroid-caption font-quicksand">Masa Orientasi 🏫✨</p>
+        </div>
+        <div class="polaroid-card rotate-right">
+          <div class="polaroid-img-wrapper">
+            <img src="./assets/2.jpeg" alt="Foto Album 2" class="polaroid-img">
+          </div>
+          <p class="polaroid-caption font-quicksand">Belajar Bersama 📚🎒</p>
+        </div>
+        <div class="polaroid-card rotate-left-slight">
+          <div class="polaroid-img-wrapper">
+            <img src="./assets/3.jpeg" alt="Foto Album 3" class="polaroid-img">
+          </div>
+          <p class="polaroid-caption font-quicksand">Sahabat Terbaik 👭❤️</p>
+        </div>
+        <div class="polaroid-card rotate-right-slight">
+          <div class="polaroid-img-wrapper">
+            <img src="./assets/4.jpeg" alt="Foto Album 4" class="polaroid-img">
+          </div>
+          <p class="polaroid-caption font-quicksand">Canda & Tawa 🌸😸</p>
+        </div>
+        <div class="polaroid-card rotate-left">
+          <div class="polaroid-img-wrapper">
+            <img src="./assets/5.jpeg" alt="Foto Album 5" class="polaroid-img">
+          </div>
+          <p class="polaroid-caption font-quicksand">Ujian Akhir 📝💡</p>
+        </div>
+        <div class="polaroid-card rotate-right">
+          <div class="polaroid-img-wrapper">
+            <img src="./assets/6.jpeg" alt="Foto Album 6" class="polaroid-img">
+          </div>
+          <p class="polaroid-caption font-quicksand">Hari Kelulusan! 🎓🎉</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Kenangan Section -->
+    <section id="gallery-section" class="section-container reveal-on-scroll">
+      <div class="text-center">
+        <h2 class="section-title font-quicksand">📸 Ilustrasi Kenangan</h2>
+        <p class="section-desc">"Sebuah ilustrasi manis tentang perjuangan belajarmu."</p>
+      </div>
+      <div class="single-gallery-container">
+        <div class="gallery-item single-item" data-index="1">
+          <img src="./assets/gallery_1.png" alt="Sweet Cat Studying" class="gallery-img">
+          <div class="gallery-overlay">
+            <span class="gallery-text">Semangat Belajar 📚✨</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Surat Rahasia Section -->
+    <section id="secret-letter-section" class="section-container reveal-on-scroll">
+      <h2 class="section-title font-quicksand text-center">✉️ Surat Rahasia</h2>
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-front"></div>
+          <div class="envelope-flap"></div>
+          <div class="letter-paper" id="letter-paper">
+            <button id="close-letter-btn" class="close-letter-btn">&times;</button>
+            <div class="letter-content font-quicksand">
+              <p class="letter-heading font-pacifico">Hai Inna Amelia,</p>
+              <p>Aku hanya ingin mengatakan bahwa aku bangga padamu.</p>
+              <p>Tidak semua orang mampu bertahan melewati setiap tantangan yang datang selama masa sekolah. Namun kamu
+                berhasil melakukannya.</p>
+              <p>Semoga langkahmu ke depan dipenuhi dengan kesempatan baik, kebahagiaan, dan mimpi yang menjadi
+                kenyataan.</p>
+              <p>Teruslah bersinar dengan caramu sendiri. Dan jangan pernah berhenti percaya pada dirimu.</p>
+              <p>Selamat wisuda, Inna Amelia.</p>
+
+              <!-- Cat Photo Container -->
+              <div class="letter-cat-photo-box">
+                <img src="./assets/kucing_inna.jpeg" alt="Kucing Kesayangan Inna" class="letter-cat-img">
+                <p class="letter-cat-caption font-quicksand">🐾 Kucing kesayangan yang selalu menemani belajarmu 🐾</p>
+              </div>
+
+              <p class="letter-signature">🎓🌷🐱💕</p>
+            </div>
+          </div>
+        </div>
+        <button id="open-envelope-btn" class="cute-btn">💌 Buka Surat Untuk Inna</button>
+      </div>
+    </section>
+
+    <!-- Quote Carousel Section -->
+    <section id="quote-carousel-section" class="section-container text-center reveal-on-scroll">
+      <div class="glass-card quote-card">
+        <div class="quote-slider">
+          <div class="quote-slide active" data-index="0">
+            <span class="quote-cat-icon">🐱</span>
+            <p class="quote-text">"Believe in yourself and all that you are."</p>
+          </div>
+          <div class="quote-slide" data-index="1">
+            <span class="quote-cat-icon">😸</span>
+            <p class="quote-text">"The future belongs to those who believe in their dreams."</p>
+          </div>
+          <div class="quote-slide" data-index="2">
+            <span class="quote-cat-icon">😻</span>
+            <p class="quote-text">"Every accomplishment starts with the courage to begin."</p>
+          </div>
+          <div class="quote-slide" data-index="3">
+            <span class="quote-cat-icon">😽</span>
+            <p class="quote-text">"You are capable of amazing things."</p>
+          </div>
+        </div>
+        <div class="carousel-dots">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+          <span class="dot" data-slide="3"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cat Playground Section -->
+    <section id="playground-section" class="section-container text-center reveal-on-scroll">
+      <h2 class="section-title font-quicksand">🐾 Cat Playground</h2>
+      <p class="section-desc">Ketik/klik kucing lucu ini untuk memberikannya pelukan virtual!</p>
+
+      <div class="playground-area">
+        <div class="cat-playground-container" id="interactive-cat-container">
+          <div class="meow-bubble" id="meow-bubble">Purr... Meow! ❤️</div>
+          <!-- SVG Interactive Cat -->
+          <svg class="interactive-cat-svg" viewBox="0 0 100 100" width="120" height="120">
+            <g class="cat-body-group" id="cat-body-group">
+              <path d="M30,80 Q25,85 20,80 Q15,75 18,65 Q20,60 25,65 Q30,70 30,80 Z" fill="#FFE4EC" stroke="#FF85A2"
+                stroke-width="2" /> <!-- tail -->
+              <ellipse cx="50" cy="70" rx="25" ry="18" fill="#FFE4EC" stroke="#FF85A2" stroke-width="2.5" />
+              <!-- body -->
+              <!-- Feet -->
+              <ellipse cx="38" cy="85" rx="6" ry="4" fill="#FFC0CB" stroke="#FF85A2" stroke-width="2" />
+              <ellipse cx="62" cy="85" rx="6" ry="4" fill="#FFC0CB" stroke="#FF85A2" stroke-width="2" />
+              <circle cx="50" cy="45" r="22" fill="#FFE4EC" stroke="#FF85A2" stroke-width="2.5" /> <!-- head -->
+              <!-- Ears -->
+              <polygon points="32,32 38,12 47,30" fill="#FFE4EC" stroke="#FF85A2" stroke-width="2"
+                stroke-linejoin="round" />
+              <polygon points="35,30 39,16 44,28" fill="#FFB7D5" />
+              <polygon points="68,32 62,12 53,30" fill="#FFE4EC" stroke="#FF85A2" stroke-width="2"
+                stroke-linejoin="round" />
+              <polygon points="65,30 61,16 56,28" fill="#FFB7D5" />
+              <!-- Face -->
+              <ellipse cx="42" cy="43" rx="2.5" ry="2.5" fill="#5c3a44" id="int-eye-left" />
+              <ellipse cx="58" cy="43" rx="2.5" ry="2.5" fill="#5c3a44" id="int-eye-right" />
+              <circle cx="41" cy="42" r="0.8" fill="#ffffff" />
+              <circle cx="57" cy="42" r="0.8" fill="#ffffff" />
+              <!-- cheeks -->
+              <circle cx="37" cy="48" r="2" fill="#FF85A2" opacity="0.6" />
+              <circle cx="63" cy="48" r="2" fill="#FF85A2" opacity="0.6" />
+              <!-- nose/mouth -->
+              <path d="M48,47 L52,47 L50,49 Z" fill="#FF85A2" />
+              <path d="M47,51 Q50,53 53,51" fill="none" stroke="#FF85A2" stroke-width="1.5" stroke-linecap="round" />
+            </g>
+          </svg>
+        </div>
+        <div class="hug-counter-box">
+          <p class="hug-counter-title">💖 Jumlah Pelukan Virtual untuk Inna 💖</p>
+          <span class="hug-count-number" id="hug-counter">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wishes Section -->
+    <section id="wishes-section" class="section-container text-center reveal-on-scroll">
+      <div class="glass-card card-pink wishes-card">
+        <h2 class="section-title font-quicksand">⭐ Harapan Untuk Inna Amelia</h2>
+        <div class="wishes-grid">
+          <div class="wish-item">
+            <span class="wish-icon">🎈</span>
+            <p>Semoga setiap langkahmu membawa kebahagiaan.</p>
+          </div>
+          <div class="wish-item">
+            <span class="wish-icon">🌈</span>
+            <p>Semoga setiap impianmu menemukan jalannya.</p>
+          </div>
+          <div class="wish-item">
+            <span class="wish-icon">🎯</span>
+            <p>Semoga setiap usaha yang kamu lakukan mendapatkan hasil terbaik.</p>
+          </div>
+          <div class="wish-item">
+            <span class="wish-icon">💕</span>
+            <p>Dan semoga kamu selalu dikelilingi oleh orang-orang yang menyayangimu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Final Section -->
+  <footer id="final-section" class="final-container">
+    <div class="final-floating-bg">
+      <div class="floating-heart" style="left: 15%; animation-delay: 1s;">🐈</div>
+      <div class="floating-heart" style="left: 35%; animation-delay: 3s;">🎓</div>
+      <div class="floating-heart" style="left: 60%; animation-delay: 0.5s;">🌸</div>
+      <div class="floating-heart" style="left: 80%; animation-delay: 2.5s;">✨</div>
+    </div>
+
+    <div class="final-content text-center">
+      <h2 class="final-title font-pacifico">Congratulations, Inna Amelia! 🎓🌸🐱</h2>
+      <p class="final-subtitle font-quicksand">"You did it. And this is only the beginning."</p>
+
+      <div class="signature-box font-quicksand">
+        <p class="signature-text">Dibuat khusus dengan bangga dan penuh doa untuk Inna Amelia 💕</p>
+      </div>
+
+      <button id="replay-btn" class="cute-btn btn-secondary">
+        🔄 Lihat Lagi Dari Awal
+      </button>
+    </div>
+  </footer>
+
+  <!-- Modal Popup for Gallery Images -->
+  <div id="gallery-modal" class="modal-overlay" aria-hidden="true">
+    <button id="modal-close-btn" class="modal-close" aria-label="Close Gallery">&times;</button>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="Zoomed memory" class="modal-zoom-img">
+      <p id="modal-caption" class="modal-caption font-quicksand"></p>
+    </div>
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>
