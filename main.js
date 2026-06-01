@@ -19,27 +19,45 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupLoadingScreen() {
   const loadingScreen = document.getElementById('loading-screen');
   const progressBar = document.getElementById('progress-bar');
+  if (!loadingScreen || !progressBar) return;
+
   let progress = 0;
+  let dismissed = false;
+
+  function dismissLoading() {
+    if (dismissed) return;
+    dismissed = true;
+
+    loadingScreen.style.opacity = '0';
+    loadingScreen.style.pointerEvents = 'none';
+
+    // Completely remove from rendering after fade-out transition (0.8s)
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      triggerConfetti(100);
+    }, 900);
+  }
 
   const interval = setInterval(() => {
     progress += Math.random() * 15;
     if (progress >= 100) {
       progress = 100;
+      progressBar.style.width = '100%';
       clearInterval(interval);
-      
-      // Hide loading screen with fade out
-      setTimeout(() => {
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.visibility = 'hidden';
-        
-        // Trigger initial confetti when loading completes
-        setTimeout(() => {
-          triggerConfetti(100);
-        }, 300);
-      }, 500);
+      setTimeout(dismissLoading, 500);
+      return;
     }
     progressBar.style.width = `${progress}%`;
   }, 100);
+
+  // Hard fallback: dismiss after 4 seconds regardless of interval state
+  setTimeout(() => {
+    if (!dismissed) {
+      clearInterval(interval);
+      progressBar.style.width = '100%';
+      dismissLoading();
+    }
+  }, 4000);
 }
 
 /* ==========================================================================
