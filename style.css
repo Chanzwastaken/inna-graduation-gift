@@ -1360,3 +1360,8 @@ body {
     margin: 0 auto;
   }
 }
+
+/* Global Hidden Utility Class */
+.hidden {
+  display: none !important;
+}

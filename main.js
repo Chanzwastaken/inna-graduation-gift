@@ -1,5 +1,7 @@
 // Main JS logic for Inna Amelia's Graduation Website
 
+let playAudio = () => {};
+
 document.addEventListener('DOMContentLoaded', () => {
   setupLoadingScreen();
   setupConfetti();
@@ -19,10 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupLoadingScreen() {
   const loadingScreen = document.getElementById('loading-screen');
   const progressBar = document.getElementById('progress-bar');
+  const progressContainer = document.getElementById('loading-progress-container');
+  const loadingText = document.getElementById('loading-text');
+  const loadingPaws = document.getElementById('loading-paws');
+  const startBtn = document.getElementById('start-btn');
+  
   if (!loadingScreen || !progressBar) return;
 
   let progress = 0;
   let dismissed = false;
+  let shownButton = false;
 
   function dismissLoading() {
     if (dismissed) return;
@@ -38,13 +46,41 @@ function setupLoadingScreen() {
     }, 900);
   }
 
+  function showStartButton() {
+    if (shownButton) return;
+    shownButton = true;
+
+    if (progressContainer) progressContainer.style.display = 'none';
+    if (loadingText) loadingText.style.display = 'none';
+    if (loadingPaws) loadingPaws.style.display = 'none';
+
+    if (startBtn) {
+      startBtn.classList.remove('hidden');
+      startBtn.style.opacity = '0';
+      startBtn.style.display = 'inline-flex';
+      // Force reflow
+      void startBtn.offsetWidth;
+      startBtn.style.transition = 'opacity 0.5s ease-in-out';
+      startBtn.style.opacity = '1';
+
+      startBtn.addEventListener('click', () => {
+        if (typeof playAudio === 'function') {
+          playAudio();
+        }
+        dismissLoading();
+      });
+    } else {
+      dismissLoading();
+    }
+  }
+
   const interval = setInterval(() => {
     progress += Math.random() * 15;
     if (progress >= 100) {
       progress = 100;
       progressBar.style.width = '100%';
       clearInterval(interval);
-      setTimeout(dismissLoading, 500);
+      setTimeout(showStartButton, 500);
       return;
     }
     progressBar.style.width = `${progress}%`;
@@ -52,10 +88,10 @@ function setupLoadingScreen() {
 
   // Hard fallback: dismiss after 4 seconds regardless of interval state
   setTimeout(() => {
-    if (!dismissed) {
+    if (!shownButton && !dismissed) {
       clearInterval(interval);
       progressBar.style.width = '100%';
-      dismissLoading();
+      showStartButton();
     }
   }, 4000);
 }
@@ -642,21 +678,36 @@ function setupBgMusic() {
   
   let isPlaying = false;
 
+  playAudio = function() {
+    if (!audio) return;
+    audio.play().then(() => {
+      isPlaying = true;
+      if (playIcon && muteIcon) {
+        playIcon.classList.add('hidden');
+        muteIcon.classList.remove('hidden');
+      }
+    }).catch(err => {
+      console.warn("Audio playback failed. Please check if song.mp3 exists inside assets folder.", err);
+      isPlaying = false;
+    });
+  };
+
+  const pauseAudio = function() {
+    if (!audio) return;
+    audio.pause();
+    isPlaying = false;
+    if (playIcon && muteIcon) {
+      playIcon.classList.remove('hidden');
+      muteIcon.classList.add('hidden');
+    }
+  };
+
   if (toggleBtn && audio) {
     toggleBtn.addEventListener('click', () => {
-      isPlaying = !isPlaying;
       if (isPlaying) {
-        audio.play().then(() => {
-          playIcon.classList.add('hidden');
-          muteIcon.classList.remove('hidden');
-        }).catch(err => {
-          console.warn("Audio playback failed. Please check if song.mp3 exists inside assets folder.", err);
-          isPlaying = false;
-        });
+        pauseAudio();
       } else {
-        audio.pause();
-        playIcon.classList.remove('hidden');
-        muteIcon.classList.add('hidden');
+        playAudio();
       }
     });
   }
